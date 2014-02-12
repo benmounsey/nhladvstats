@@ -11,6 +11,7 @@ def parse_TOI_sheet(sheet)
   xpath_root = '//div[@class = "pageBreakAfter"]/table[@class="tablewidth"]/tbody/tr/td/table/tbody/tr//descendant::td[contains(concat(\' \',@class,\' \'), \' playerHeading \')]'
   xpath_td = '//div[@class = "pageBreakAfter"]/table[@class="tablewidth"]/tbody/tr/td/table/tbody/tr//descendant::td[contains(concat(\'  \',@class, \'  \'), \' lborder \')  and not(contains(concat(\' \',@class, \' \'), \' heading \')) or contains(concat(\' \',@class, \' \'), \' playerHeading \') ]'
   
+  
   #get the players on the gamesheet.
   players = Set.new()
   #get all the rows that match the root xpath
@@ -23,34 +24,45 @@ def parse_TOI_sheet(sheet)
   players = players.to_a()
   
 #from here we have from the first playerheading -> final player's summary sheet in the doc variable.  What we want to do is look at each row.  If it's a playerHeading row, check the text in that row and set the player key to be that of the player's name in the players array.    If it's a shift row, parse it into a shift hash object, pop it into the player_shifts array and move on to the next line.  End when we encounter the end of the document or another player's name. 
- f = File.open('d:\dev\nhl\temp.txt', 'w')
+ f = File.open('d:\dev\debugging\temp.txt', 'w')
  
-  players.each do |player|
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=begin
+ players.each do |player|
        	 
 	  
 	  f.write(player)
-		#if line.text == player
+		if line.text == player
 			@playerkey = player
 			
 		#else
 			#create the shift object out of the shift row
-			#shift = []
-			# [
-			#	[:shift_num, 'td text()'],
-			#	[:period, 'td[2] text()'],
-			#	[:start_time,'td[3] text()'], 
-			#	[:end_time, 'td[4] text()'],
-			#	[:duration, 'td[5] text()'],
-			#  ]	
+			shift = []
+			 [
+				[:shift_num, 'td text()'],
+				[:period, 'td[2] text()'],
+				[:start_time,'td[3] text()'], 
+				[:end_time, 'td[4] text()'],
+				[:duration, 'td[5] text()'],
+			  ]	
 			
 		
-	#end		
+	end
+=end
+	
 end		
 
   
   
 end
-  parse_TOI_sheet('D:\dev\NHL\sheets\20132014\TH020022.HTM')
+  parse_TOI_sheet('D:\dev\repos\nhladvstats\sheets\20132014\TH020022.HTM')
 
 
   
